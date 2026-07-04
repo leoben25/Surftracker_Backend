@@ -6,16 +6,22 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface PronosticoRepository extends JpaRepository<Pronostico, Integer> {
 
+    List<Pronostico> findByIdLocalizacion(Integer idLocalizacion);
 
-    public abstract List<Pronostico> findByIdLocalizacion(int idLocalizacion);
+    List<Pronostico> findByFechaPronostico(LocalDate fecha);
 
-    public abstract List<Pronostico> findByFechaPronostico(LocalDate fecha);
+    Optional<Pronostico> findByIdLocalizacionAndFechaPronostico(Integer idLocalizacion, LocalDate fechaPronostico);
 
+    List<Pronostico> findByIdLocalizacionAndFechaPronosticoBetweenOrderByFechaPronosticoAsc(
+            Integer idLocalizacion,
+            LocalDate fechaInicio,
+            LocalDate fechaFin
+    );
 
     @Query("select f from Pronostico f where f.temperatura between ?1 and ?2")
-    public abstract List<Pronostico> findByTemperaturaBetween(double min, double max);
-
+    List<Pronostico> findByTemperaturaBetween(Double min, Double max);
 }

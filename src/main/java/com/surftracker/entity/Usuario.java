@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Table(name = "usuario")
-
 public class Usuario {
 
     @Id
@@ -18,10 +17,12 @@ public class Usuario {
     @Column(name = "id_usuario")
     private Integer idUsuario;
 
-    @Column(nullable = false, length = 100)
+    // En Java usamos "nombres", pero en la BD tu columna real se llama "nombre"
+    @Column(name = "nombre", nullable = false, length = 100)
     private String nombres;
 
-    @Column(nullable = false, length = 100)
+    // En Java usamos "apellidos", pero en la BD tu columna real se llama "apellido"
+    @Column(name = "apellido", length = 100)
     private String apellidos;
 
     @Column(length = 8)
@@ -33,14 +34,21 @@ public class Usuario {
     @Column(nullable = false, length = 200)
     private String password;
 
-    @Column(nullable = false, length = 45)
+    // En Java usamos "correo", pero en la BD tu columna real se llama "email"
+    @Column(name = "email", nullable = false, length = 150)
     private String correo;
 
+    // En Java usamos "fecharegistro", pero en la BD tu columna real se llama "fecha_registro"
+    @Column(name = "fecha_registro")
     private LocalDate fecharegistro;
 
     private LocalDate fechanacimiento;
 
     private String direccion;
 
+    @Column(length = 20)
+    private String telefono;
 
+    @Column(length = 30)
+    private String estado;
 }
