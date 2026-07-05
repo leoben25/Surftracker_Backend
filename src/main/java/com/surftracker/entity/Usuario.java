@@ -51,4 +51,7 @@ public class Usuario {
 
     @Column(length = 30)
     private String estado;
+
+    @Column(length = 30)
+    private String rol;
 }
